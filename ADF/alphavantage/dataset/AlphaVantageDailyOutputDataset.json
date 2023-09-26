@@ -1,0 +1,34 @@
+{
+	"name": "AlphaVantageDailyOutputDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AlphaVantageStorage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"layer": {
+				"type": "string"
+			},
+			"symbol": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('alphavantage_daily_', utcnow('yyyyMMddHHmmss'), '.json')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat(dataset().layer, '/date_reference=', utcnow('yyyy-MM-dd'), '/ticket=', dataset().symbol)",
+					"type": "Expression"
+				},
+				"container": "alphavantage"
+			}
+		},
+		"schema": {}
+	}
+}
