@@ -1,0 +1,9 @@
+{
+	"name": "Prod-AlphaVantage-ETL-ADF",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "894060e7-13e4-4398-990d-87a26a462a90",
+		"tenantId": "94b50080-3018-4443-b677-0cd2fef81ccc"
+	}
+}
