@@ -1,0 +1,12 @@
+{
+	"name": "EnrichmentFromNeoway",
+	"properties": {
+		"annotations": [],
+		"type": "AzureFunction",
+		"typeProperties": {
+			"functionAppUrl": "https://enrichmentb3tickets.azurewebsites.net",
+			"authentication": "MSI",
+			"resourceId": ""
+		}
+	}
+}
