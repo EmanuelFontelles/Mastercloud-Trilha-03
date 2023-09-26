@@ -1,0 +1,23 @@
+{
+	"name": "AlphaVantageDailyDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AlphaVantageService",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"symbol": {
+				"type": "string"
+			},
+			"apikey": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": "/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={apikey}"
+		},
+		"schema": []
+	}
+}
