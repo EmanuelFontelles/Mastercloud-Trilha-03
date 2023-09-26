@@ -3,70 +3,84 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
-				"type": "Copy",
+				"name": "ParaCadaTicket",
+				"type": "ForEach",
 				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "RestSource",
-						"httpRequestTimeout": "00:01:40",
-						"requestInterval": "00.00:00:00.010",
-						"requestMethod": "GET",
-						"paginationRules": {
-							"supportRFC5988": "true"
-						}
+					"items": {
+						"value": "@variables('symbol')",
+						"type": "Expression"
 					},
-					"sink": {
-						"type": "JsonSink",
-						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
-						},
-						"formatSettings": {
-							"type": "JsonWriteSettings"
-						}
-					},
-					"enableStaging": false
-				},
-				"inputs": [
-					{
-						"referenceName": "AlphaVantageDailyDataset",
-						"type": "DatasetReference",
-						"parameters": {
-							"symbol": {
-								"value": "@variables('symbol')",
-								"type": "Expression"
+					"activities": [
+						{
+							"name": "Copy data2",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
 							},
-							"apikey": {
-								"value": "@pipeline().parameters.apikey",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "AlphaVantageDailyOutputDataset",
-						"type": "DatasetReference",
-						"parameters": {
-							"layer": {
-								"value": "@pipeline().parameters.raw_layer",
-								"type": "Expression"
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET",
+									"paginationRules": {
+										"supportRFC5988": "true"
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false
 							},
-							"symbol": {
-								"value": "@variables('symbol')",
-								"type": "Expression"
-							}
+							"inputs": [
+								{
+									"referenceName": "AlphaVantageDailyDataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"symbol": {
+											"value": "@item()",
+											"type": "Expression"
+										},
+										"apikey": {
+											"value": "@pipeline().parameters.apikey",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "AlphaVantageDailyOutputDataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"layer": {
+											"value": "@pipeline().parameters.raw_layer",
+											"type": "Expression"
+										},
+										"symbol": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
-					}
-				]
+					]
+				}
 			}
 		],
 		"parameters": {
@@ -81,8 +95,12 @@
 		},
 		"variables": {
 			"symbol": {
-				"type": "String",
-				"defaultValue": "BBDC4.SA"
+				"type": "Array",
+				"defaultValue": [
+					"BBDC4.SA",
+					"IRDM11.SA",
+					"BBSA3.SA"
+				]
 			}
 		},
 		"annotations": []
