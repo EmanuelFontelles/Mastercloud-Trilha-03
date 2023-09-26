@@ -82,7 +82,7 @@
 		"variables": {
 			"symbol": {
 				"type": "String",
-				"defaultValue": "\"BBDC4.SA\""
+				"defaultValue": "BBDC4.SA"
 			}
 		},
 		"annotations": []
