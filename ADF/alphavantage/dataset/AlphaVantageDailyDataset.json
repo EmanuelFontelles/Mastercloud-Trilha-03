@@ -16,7 +16,10 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={apikey}"
+			"relativeUrl": {
+				"value": "@concat('/query?function=TIME_SERIES_DAILY&symbol=', dataset().symbol, '&apikey=', dataset().apikey)",
+				"type": "Expression"
+			}
 		},
 		"schema": []
 	}
