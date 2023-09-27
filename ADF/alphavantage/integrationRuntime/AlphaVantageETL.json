@@ -1,0 +1,33 @@
+{
+	"name": "AlphaVantageETL",
+	"properties": {
+		"type": "Airflow",
+		"typeProperties": {
+			"computeProperties": {
+				"location": "East US",
+				"computeSize": "Small",
+				"extraNodes": 0,
+				"enableAutoscale": false
+			},
+			"airflowProperties": {
+				"airflowVersion": "2.6.3",
+				"gitSyncProperties": {
+					"gitServiceType": "Github",
+					"gitCredentialType": "None",
+					"repo": "https://github.com/EmanuelFontelles/Mastercloud-Trilha-03-Prod.git",
+					"branch": "dags"
+				},
+				"airflowEnvironmentVariables": null,
+				"airflowRequirements": [
+					"pandas"
+				],
+				"enableAADIntegration": true,
+				"userName": null,
+				"password": null,
+				"airflowEntityReferences": [],
+				"encryptedSecrets": [],
+				"secrets": null
+			}
+		}
+	}
+}
