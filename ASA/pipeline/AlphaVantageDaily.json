@@ -1,0 +1,94 @@
+{
+	"name": "AlphaVantageDaily",
+	"properties": {
+		"activities": [
+			{
+				"name": "ParaCadaTicket",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('symbol')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy data2",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET",
+									"paginationRules": {
+										"supportRFC5988": "true"
+									}
+								},
+								"enableStaging": false
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Notebook1",
+				"type": "SynapseNotebook",
+				"dependsOn": [
+					{
+						"activity": "ParaCadaTicket",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebook": {
+						"referenceName": "spark_example",
+						"type": "NotebookReference"
+					},
+					"snapshot": true
+				}
+			}
+		],
+		"parameters": {
+			"raw_layer": {
+				"type": "string",
+				"defaultValue": "bronze"
+			},
+			"apikey": {
+				"type": "string",
+				"defaultValue": "{\"value\": \"@linkedService(\"AlphaVantageVault\").secret.alphavantagepassword\", \"type\": \"Expression\"}"
+			}
+		},
+		"variables": {
+			"symbol": {
+				"type": "Array",
+				"defaultValue": [
+					"BBDC4.SA",
+					"IRDM11.SA",
+					"BBSA3.SA"
+				]
+			}
+		},
+		"annotations": []
+	}
+}

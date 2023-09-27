@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "6cac6975-93d3-45a6-b694-c93ea29347de"
+				"spark.autotune.trackingId": "7bbb7dab-61fa-4f89-9db7-b22962ab0484"
 			}
 		},
 		"metadata": {
@@ -387,10 +387,10 @@
 					"        ~F.isnull(\"Meta Data\")\n",
 					"    )\n",
 					"    .drop_duplicates()\n",
-					"    .write.parquet(silver_path, mode='overwrite', partitionBy=[\"date_reference\", \"ticket\"])\n",
+					"    .write.parquet(silver_path, mode='append', partitionBy=[\"date_reference\", \"ticket\"])\n",
 					")"
 				],
-				"execution_count": 47
+				"execution_count": 49
 			},
 			{
 				"cell_type": "code",
