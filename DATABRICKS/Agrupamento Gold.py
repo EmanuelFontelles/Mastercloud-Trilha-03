@@ -25,6 +25,10 @@ df.selectExpr("explode(map_from_entries(named_struct('date', date_reference, 'op
 
 # COMMAND ----------
 
+df.show()
+
+# COMMAND ----------
+
 display(
   df
   .groupby("date_reference")
