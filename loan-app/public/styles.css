@@ -1,0 +1,40 @@
+body {
+    background-color: #F4F5F7;
+    font-family: Arial, sans-serif;
+}
+header {
+    background-color: #001E6C;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+nav ul {
+    list-style-type: none;
+}
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+main {
+    text-align: center;
+    margin: 20px;
+}
+form {
+    display: inline-block;
+    text-align: left;
+}
+footer {
+    background-color: #001E6C;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+button {
+    background-color: #0057D9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+}
