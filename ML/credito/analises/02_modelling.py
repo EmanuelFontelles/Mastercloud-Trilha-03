@@ -47,11 +47,12 @@ display(X_train), display(X_test)
 
 # COMMAND ----------
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# MAGIC %md
+# MAGIC ## Separando o conjunto X em Treino e Teste
 
 # COMMAND ----------
 
-mlflow.end_run()
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # COMMAND ----------
 
@@ -61,6 +62,11 @@ mlflow.start_run()
 # COMMAND ----------
 
 y.value_counts(normalize=True)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## Vamos utilizar o LGBM como classificador
 
 # COMMAND ----------
 
@@ -91,6 +97,11 @@ params = {
     "class_weight": "balanced",
 }
 mlflow.log_params(params)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ## Treinamento do modelo no conjunto de dados
 
 # COMMAND ----------
 
